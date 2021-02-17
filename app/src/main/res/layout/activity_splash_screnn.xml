@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".SplashScrennActivity">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/logo"
         android:layout_width="289dp"
         android:layout_height="91dp"
