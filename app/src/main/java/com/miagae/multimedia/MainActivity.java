@@ -1,63 +1,63 @@
 package com.miagae.multimedia;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.Toast;
+import android.view.Menu;
+import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 
-    private DrawerLayout activity_main;
-    private ActionBarDrawerToggle toggle;
-    private NavigationView navView ;
+    private AppBarConfiguration mAppBarConfiguration;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        activity_main= findViewById(R.id.activity_main);
-        toggle = new ActionBarDrawerToggle(this,activity_main,R.string.open,R.string.close);
-        activity_main.addDrawerListener(toggle);
-        toggle.syncState();
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        navView = findViewById(R.id.navView);
-        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId())
-                {
-                    case R.id.classe:
-                        System.out.println("hh");
-                    case R.id.etudiant:
-                        Toast.makeText(MainActivity.this, "etudiant chose", Toast.LENGTH_SHORT).show();
-                    case R.id.mail:
-                        Toast.makeText(MainActivity.this, "main chose", Toast.LENGTH_SHORT).show();
-                    case R.id.sms:
-                        Toast.makeText(MainActivity.this, "sms chose", Toast.LENGTH_SHORT).show();
-                    default:return true;
-                }
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_classe, R.id.nav_etudiant, R.id.nav_mail, R.id.nav_sms)
+                .setDrawerLayout(drawer)
+                .build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView, navController);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if(toggle.onOptionsItemSelected(item)){
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.mobile_navigation, menu);
+        return true;
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
+    }
 }

@@ -4,7 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/activity_main">
+    android:id="@+id/drawer_layout"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+    <include
+        layout="@layout/app_bar_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
@@ -23,11 +30,12 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navView"
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        app:headerLayout="@layout/nav_header"
-        app:menu="@menu/nav_drawer_menu"
+        app:headerLayout="@layout/nav_header_main"
+        android:fitsSystemWindows="true"
+        app:menu="@menu/activity_main_drawer"
         android:layout_gravity="start"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>

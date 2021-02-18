@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.miagae.multimedia.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.miagae.multimedia.ui.gallery.GalleryFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_gallery" />
+
+
+    <activity
+        android:id="@+id/nav_classe"
+        android:name="com.miagae.multimedia.classe_activity"
+        android:label="@string/classe"
+        tools:layout="@layout/classe_activity" />
+
+    <activity
+        android:id="@+id/nav_etudiant"
+        android:name="com.miagae.multimedia.etudiant_activity"
+        android:label="@string/etudiant"
+        tools:layout="@layout/etudiant_activity" />
+
+    <activity
+        android:id="@+id/nav_mail"
+        android:name="com.miagae.multimedia.mail_activity"
+        android:label="@string/mail"
+        tools:layout="@layout/mail_activity" />
+
+    <activity
+        android:id="@+id/nav_sms"
+        android:name="com.miagae.multimedia.sms_activity"
+        android:label="@string/sms"
+        tools:layout="@layout/sms_activity" />
+
+</navigation>
